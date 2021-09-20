@@ -101,6 +101,10 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --kubelet-https=true \\
   --runtime-config=api/all=true \\
   --service-account-key-file=/var/lib/kubernetes/service-account.crt \\
+  #add below 2 definitions for latest k8s release (probably 1.20.x onwards)
+  --service-account-issuer=api \
+  --service-account-signing-key-file=/var/lib/kubernetes/service-account.key \
+  #If the above lines are missing with latest k8s release, then the kube-apiserver.service will not start
   --service-cluster-ip-range=10.96.0.0/24 \\
   --service-node-port-range=30000-32767 \\
   --tls-cert-file=/var/lib/kubernetes/kube-apiserver.crt \\
